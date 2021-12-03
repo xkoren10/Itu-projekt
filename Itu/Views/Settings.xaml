@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Title="Nastavenia"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Itu.ViewModels" x:DataType="viewmodels:SettingsViewModel"
+             x:Class="Itu.Views.Settings">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Nastavenie rozpočtu:"
+                HorizontalOptions="CenterAndExpand" 
+                   Margin="0,40,0,0"/>
+            <Entry Text="" FontSize="Medium" Keyboard="Numeric" />
+
+            <Label Text="Nastavenie meny:"
+                HorizontalOptions="CenterAndExpand" 
+                   Margin="0,40,0,0"/>
+            <Picker  Title="Vyberte menu:"  /> 
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+<!--ItemsSource="{Binding Currency}" -->
