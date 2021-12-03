@@ -1,7 +1,5 @@
 ﻿using Itu.Models;
 using Itu.Services;
-using Itu.Models;
-using Itu.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +11,7 @@ namespace Itu.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Person> DataStore => DependencyService.Get<IDataStore<Person>>();
+        public IDrinkStore<Item> DataStore2 => DependencyService.Get<IDrinkStore<Item>>();
 
         bool isBusy = false;
         public bool IsBusy

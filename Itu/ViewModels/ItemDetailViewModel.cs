@@ -1,5 +1,7 @@
 ﻿using Itu.Models;
+using Itu.Views;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,14 +12,14 @@ namespace Itu.ViewModels
     public class ItemDetailViewModel : BaseViewModel
     {
         private string itemId;
-        private string text;
+        private string meno;
 
         public string Id { get; set; }
 
-        public string Text
+        public string Meno
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => meno;
+            set => SetProperty(ref meno, value);
         }
 
 
@@ -30,17 +32,17 @@ namespace Itu.ViewModels
             set
             {
                 itemId = value;
-                LoadPersonId(value);
+                LoadItemId(value);
             }
         }
 
-        public async void LoadPersonId(string itemId)
+        public async void LoadItemId(string itemId)
         {
             try
             {
                 var item = await DataStore.GetPersonAsync(itemId);
                 Id = item.Id;
-                Text = item.Text;
+                Meno = item.Text;
 
             }
             catch (Exception)
@@ -48,5 +50,63 @@ namespace Itu.ViewModels
                 Debug.WriteLine("Failed to Load Item");
             }
         }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
+
+        }
+
+
+
+        public ObservableCollection<Item> Items { get; }
+        public Command LoadItemsCommand { get; }
+        public Command AddItemCommand { get; }
+        public Command<Item> ItemTapped { get; }
+
+        public ItemDetailViewModel()
+        {
+            Title = "Browse";
+            Items = new ObservableCollection<Item>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+
+
+            AddItemCommand = new Command(OnAddItem);
+        }
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Items.Clear();
+                System.Collections.Generic.IEnumerable<Item> items = await DataStore2.GetItemsAsync(true);
+                foreach (Item item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+ 
+
+        private async void OnAddItem(object obj)
+        {
+            await Shell.Current.GoToAsync(nameof(NewDrinkPage));
+        }
+
+
+
+
     }
 }

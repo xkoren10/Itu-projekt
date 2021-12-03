@@ -6,6 +6,6 @@ namespace Itu.Models
     {
         public string Id { get; set; }
         public string Text { get; set; }
-        public int Price { get; set; }
+        public string Price { get; set; }
     }
 }

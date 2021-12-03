@@ -14,6 +14,8 @@ namespace Itu
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<MockDrinkStore>();
+
             MainPage = new AppShell();
         }
 
