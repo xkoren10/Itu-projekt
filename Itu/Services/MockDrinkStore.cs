@@ -28,8 +28,10 @@ namespace Itu.Services
         public async Task<bool> UpdateItemsAsync(Item item)
         {
             var oldItem = Items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+
+            int index = Items.IndexOf(oldItem);
             Items.Remove(oldItem);
-            Items.Add(item);
+            Items.Insert(index,item);
 
             return await Task.FromResult(true);
         }

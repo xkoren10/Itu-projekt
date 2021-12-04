@@ -15,7 +15,6 @@ namespace Itu.ViewModels
 
 
         private string itemId;
-        private int val = 0;
         private string valdisplay = "0";
         private string meno;
 
@@ -31,16 +30,7 @@ namespace Itu.ViewModels
             set => SetProperty(ref meno, value);
         }
 
-        public string Value
-        {
-            get => valdisplay;
-            set
-            {
-                valdisplay = value;
-                OnPropertyChanged(nameof(Value));
 
-            }
-        }
 
         
 
@@ -131,16 +121,20 @@ namespace Itu.ViewModels
             await Shell.Current.GoToAsync(nameof(NewDrinkPage));
         }
 
-        public void IncrementValue(Item item)
+        public async void IncrementValue(Item item)
         {
             item.Ammount++;
-            Value = $"{item.Ammount}";
+            
+            await DataStore2.UpdateItemsAsync(item);
+            await ExecuteLoadItemsCommand();
         }
 
-        public void DecrementValue(Item item)
+        public async void DecrementValue(Item item)
         {
            item.Ammount--;
-            Value = $"{item.Ammount}";
+            await DataStore2.UpdateItemsAsync(item);
+            await ExecuteLoadItemsCommand();
+
         }
 
 
