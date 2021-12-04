@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Itu.ViewModels" xmlns:model="clr-namespace:Itu.Models" x:DataType="local:ItemDetailViewModel"
              x:Class="Itu.Views.ItemDetailPage"
-             Title="{Binding Title}">
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
+             Title="{Binding Meno}">
 
 
     <ContentPage.ToolbarItems>
@@ -11,8 +12,11 @@
 
 
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Meno:" FontSize="Medium" />
-        <Label Text="{Binding Meno}" FontSize="Small"/>
+
+        <Label Text="Suma: 0 kč" FontSize="Medium" HorizontalTextAlignment="Center"/>
+
+
+
 
 
         <RefreshView x:DataType="local:ItemDetailViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
@@ -21,21 +25,57 @@
                 SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10" x:DataType="model:Item">
-                            <Label Text="{Binding Text}" 
+
+
+
+                        <SwipeView android:SwipeView.SwipeTransitionMode="Drag">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                               IconImageSource="delete.png"
+                               BackgroundColor="Red"
+                                />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            
+                            <Grid Padding="10" x:DataType="model:Item">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0"  VerticalTextAlignment="Center" Text="{Binding Text}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                            <Label Text="{Binding Price}" 
+                            <Label Grid.Column="0" Grid.Row="1"  VerticalTextAlignment="Center" Text="{Binding Price}" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        </StackLayout>
+                                <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="2" Text="+" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=IncrementCommand}"  CommandParameter="{Binding .}"/>
+                                <Label x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="3"  HorizontalTextAlignment="Center" FontSize="30" 
+                                       Text="{Binding Ammount}" />
+                                <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="4" Text="-" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=DecrementCommand}" CommandParameter="{Binding .}"/>
+
+                        </Grid>
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
+        
 
+
+        
     </StackLayout>
     
     

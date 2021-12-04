@@ -11,8 +11,17 @@ namespace Itu.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
+
+
+
         private string itemId;
+        private int val = 0;
+        private string valdisplay = "0";
         private string meno;
+
+
+
+
 
         public string Id { get; set; }
 
@@ -22,6 +31,18 @@ namespace Itu.ViewModels
             set => SetProperty(ref meno, value);
         }
 
+        public string Value
+        {
+            get => valdisplay;
+            set
+            {
+                valdisplay = value;
+                OnPropertyChanged(nameof(Value));
+
+            }
+        }
+
+        
 
         public string ItemId
         {
@@ -43,7 +64,6 @@ namespace Itu.ViewModels
                 var item = await DataStore.GetPersonAsync(itemId);
                 Id = item.Id;
                 Meno = item.Text;
-
             }
             catch (Exception)
             {
@@ -54,7 +74,7 @@ namespace Itu.ViewModels
         public void OnAppearing()
         {
             IsBusy = true;
-
+            
         }
 
 
@@ -62,15 +82,20 @@ namespace Itu.ViewModels
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+
+        public Command IncrementCommand { get; }
+
+        public Command DecrementCommand { get; }
+
 
         public ItemDetailViewModel()
         {
-            Title = "Browse";
+
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-
+            IncrementCommand = new Command<Item>(IncrementValue);
+            DecrementCommand = new Command<Item>(DecrementValue);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -86,6 +111,7 @@ namespace Itu.ViewModels
                 foreach (Item item in items)
                 {
                     Items.Add(item);
+                    
                 }
             }
             catch (Exception ex)
@@ -103,6 +129,18 @@ namespace Itu.ViewModels
         private async void OnAddItem(object obj)
         {
             await Shell.Current.GoToAsync(nameof(NewDrinkPage));
+        }
+
+        public void IncrementValue(Item item)
+        {
+            item.Ammount++;
+            Value = $"{item.Ammount}";
+        }
+
+        public void DecrementValue(Item item)
+        {
+           item.Ammount--;
+            Value = $"{item.Ammount}";
         }
 
 

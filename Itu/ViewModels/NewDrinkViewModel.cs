@@ -11,7 +11,7 @@ namespace Itu.ViewModels
     {
         private string text;
         private string price;
-
+        private int ammount = 0;
         public NewDrinkViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
@@ -39,6 +39,13 @@ namespace Itu.ViewModels
             set => SetProperty(ref price, value);
         }
 
+        public int Ammount
+        {
+            get => ammount;
+            set => SetProperty(ref ammount, value);
+        }
+
+
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
@@ -54,7 +61,9 @@ namespace Itu.ViewModels
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
-                Price = Price
+                Price = Price,
+                Ammount = Ammount
+
             };
 
             await DataStore2.AddItemsAsync(newItem);
