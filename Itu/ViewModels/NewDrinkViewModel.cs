@@ -16,7 +16,7 @@ namespace Itu.ViewModels
         public string itemId;
         private string text;
         private string price;
-        private int ammount = 0;
+        private double ammount = 0.0;
         public NewDrinkViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
@@ -71,7 +71,7 @@ namespace Itu.ViewModels
             set => SetProperty(ref price, value);
         }
 
-        public int Ammount
+        public double Ammount
         {
             get => ammount;
             set => SetProperty(ref ammount, value);

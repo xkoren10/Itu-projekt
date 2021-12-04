@@ -139,8 +139,8 @@ namespace Itu.ViewModels
         public async void IncrementValue(Item item)
         {
             item.Ammount++;
-            
-            await DataStore2.UpdateItemsAsync(item);
+            Person person = await DataStore.GetPersonAsync(ItemId);
+            await DataStore2.UpdateItemsAsync(item,person);
             await ExecuteLoadItemsCommand();
             CountSum();
         }
@@ -148,8 +148,8 @@ namespace Itu.ViewModels
         public async void DecrementValue(Item item)
         {
            item.Ammount--;
-            
-            await DataStore2.UpdateItemsAsync(item);
+            Person person = await DataStore.GetPersonAsync(ItemId);
+            await DataStore2.UpdateItemsAsync(item,person);
             await ExecuteLoadItemsCommand();
             CountSum();
         }

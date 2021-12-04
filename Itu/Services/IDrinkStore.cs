@@ -9,7 +9,7 @@ namespace Itu.Services
     public interface IDrinkStore <T>
     {
         Task<bool> AddItemsAsync(T Item, Person person);
-        Task<bool> UpdateItemsAsync(T Item);
+        Task<bool> UpdateItemsAsync(T Item, Person person);
         Task<bool> DeleteItemsAsync(string id);
         Task<T> GetItemsAsync(string id);
         Task<IEnumerable<T>> GetItemsAsync( Person person,bool forceRefresh = false);

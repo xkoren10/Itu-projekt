@@ -50,7 +50,7 @@ namespace Itu.ViewModels
         {
             Id = Guid.NewGuid().ToString(),
             Text = Meno,
-            Items = new List<Item>() { new Item {Id= Guid.NewGuid().ToString(), Text = "vodka", Ammount=0, Price="1" } }
+            Items = new List<Item>()
         };
 
           
