@@ -18,10 +18,10 @@ namespace Itu.Services
 
         }
 
-        public async Task<bool> AddItemsAsync(Item item)//, Person person//)
+        public async Task<bool> AddItemsAsync(Item item, Person person)
         {
-            //person.Items.Add(item);
-            Items.Add(item);
+
+            person.Items.Add(item);
       
 
             return await Task.FromResult(true);
@@ -51,9 +51,9 @@ namespace Itu.Services
             return await Task.FromResult(Items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Item>> GetItemsAsync(Person person,bool forceRefresh = false)
         {
-            return await Task.FromResult(Items);
+            return await Task.FromResult(person.Items);
         }
     }
 

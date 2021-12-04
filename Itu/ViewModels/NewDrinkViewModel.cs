@@ -1,14 +1,18 @@
 ﻿using Itu.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Xamarin.Forms;
 
 namespace Itu.ViewModels
 {
-    public class NewDrinkViewModel : BaseViewModel
+    [QueryProperty(nameof(penis), nameof(ItemId))]
+    public class NewDrinkViewModel: BaseViewModel
 
     {
+        public string penis;
+        public string itemId;
         private string text;
         private string price;
         private int ammount = 0;
@@ -19,6 +23,33 @@ namespace Itu.ViewModels
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
+
+        public string ItemId
+        {
+            get
+            {
+                return itemId;
+            }
+            set
+            {
+                itemId = value;
+                LoadItemId2(value);
+            }
+        }
+
+        public async void LoadItemId2(string itemId)
+        {
+            try
+            {
+                var item = await DataStore.GetPersonAsync(itemId);
+
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Item");
+            }
+        }
+
 
         private bool ValidateSave()
         {
@@ -66,10 +97,11 @@ namespace Itu.ViewModels
 
             };
 
-            await DataStore2.AddItemsAsync(newItem);
+            Person person = await DataStore.GetPersonAsync(penis);
+            await DataStore2.AddItemsAsync(newItem,person);
 
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync(".."); 
         }
     }
 }

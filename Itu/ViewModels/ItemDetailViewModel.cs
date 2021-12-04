@@ -14,7 +14,7 @@ namespace Itu.ViewModels
 
 
 
-        private string itemId;
+        public string itemId;
         private string meno;
         private string suma;
         public double suma_double = 0.0;
@@ -74,6 +74,12 @@ namespace Itu.ViewModels
 
 
 
+
+
+
+
+
+
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
@@ -81,6 +87,8 @@ namespace Itu.ViewModels
         public Command IncrementCommand { get; }
 
         public Command DecrementCommand { get; }
+
+       
 
 
         public ItemDetailViewModel()
@@ -102,7 +110,8 @@ namespace Itu.ViewModels
             try
             {
                 Items.Clear();
-                System.Collections.Generic.IEnumerable<Item> items = await DataStore2.GetItemsAsync(true);
+               var person = await DataStore.GetPersonAsync(Id);
+                System.Collections.Generic.IEnumerable<Item> items = await DataStore2.GetItemsAsync(person,true);
                 foreach (Item item in items)
                 {
                     Items.Add(item);
@@ -123,7 +132,8 @@ namespace Itu.ViewModels
 
         private async void OnAddItem(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewDrinkPage));
+            await Shell.Current.GoToAsync($"{nameof(NewDrinkPage)}?{nameof(NewDrinkViewModel.ItemId)}={Id}");
+      
         }
 
         public async void IncrementValue(Item item)

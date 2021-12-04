@@ -49,10 +49,12 @@ namespace Itu.ViewModels
         Person newItem = new Person()
         {
             Id = Guid.NewGuid().ToString(),
-            Text = Meno
+            Text = Meno,
+            Items = new List<Item>() { new Item {Id= Guid.NewGuid().ToString(), Text = "vodka", Ammount=0, Price="1" } }
         };
 
-        await DataStore.AddPersonAsync(newItem);                                   //Vyhadzuje null exception - niekde chyba využitie navratu, netušim kde
+          
+        await DataStore.AddPersonAsync(newItem);                                   
 
         // This will pop the current page off the navigation stack
         await Shell.Current.GoToAsync("..");
