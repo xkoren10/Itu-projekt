@@ -132,7 +132,7 @@ namespace Itu.ViewModels
 
         private async void OnAddItem(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(NewDrinkPage)}?{nameof(NewDrinkViewModel.ItemId)}={Id}");
+            await Shell.Current.GoToAsync($"{nameof(NewDrinkPage)}?{nameof(NewDrinkViewModel.ItemId)}={ItemId}");
       
         }
 

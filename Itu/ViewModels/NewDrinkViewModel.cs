@@ -7,11 +7,12 @@ using Xamarin.Forms;
 
 namespace Itu.ViewModels
 {
-    [QueryProperty(nameof(penis), nameof(ItemId))]
+    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class NewDrinkViewModel: BaseViewModel
 
     {
-        public string penis;
+
+   
         public string itemId;
         private string text;
         private string price;
@@ -97,7 +98,7 @@ namespace Itu.ViewModels
 
             };
 
-            Person person = await DataStore.GetPersonAsync(penis);
+            Person person = await DataStore.GetPersonAsync(ItemId);
             await DataStore2.AddItemsAsync(newItem,person);
 
             // This will pop the current page off the navigation stack
