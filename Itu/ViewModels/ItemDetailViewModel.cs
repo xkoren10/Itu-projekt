@@ -15,8 +15,9 @@ namespace Itu.ViewModels
 
 
         private string itemId;
-        private string valdisplay = "0";
         private string meno;
+        private string suma;
+        public double suma_double = 0.0;
 
 
 
@@ -30,9 +31,13 @@ namespace Itu.ViewModels
             set => SetProperty(ref meno, value);
         }
 
+        public string Suma
+        {
+            get => suma;
+            set => SetProperty(ref suma, value);
+        }
 
 
-        
 
         public string ItemId
         {
@@ -127,17 +132,32 @@ namespace Itu.ViewModels
             
             await DataStore2.UpdateItemsAsync(item);
             await ExecuteLoadItemsCommand();
+            CountSum();
         }
 
         public async void DecrementValue(Item item)
         {
            item.Ammount--;
+            
             await DataStore2.UpdateItemsAsync(item);
             await ExecuteLoadItemsCommand();
-
+            CountSum();
         }
 
+        public void CountSum()
+        {
+            double tmp = 0.0;
 
+            foreach (Item item in Items)
+            {
+                tmp = tmp + item.Ammount * Convert.ToDouble(item.Price);
+                
+            }
+
+            suma_double = tmp;
+            Suma = $"Suma: {suma_double} kč";
+
+        }
 
 
     }

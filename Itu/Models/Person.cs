@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Itu.Models
 {
@@ -6,5 +8,7 @@ namespace Itu.Models
     {
         public string Id { get; set; }
         public string Text { get; set; }
+
+        public List<Item> Items { get; }
     }
 }

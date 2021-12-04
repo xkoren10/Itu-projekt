@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Itu.Services
 {
-   public class MockDrinkStore : IDrinkStore<Item>
+   public class MockDrinkStore : MockDataStore, IDrinkStore<Item>
     {
 
         readonly List<Item> Items;
@@ -18,9 +18,11 @@ namespace Itu.Services
 
         }
 
-        public async Task<bool> AddItemsAsync(Item item)
+        public async Task<bool> AddItemsAsync(Item item)//, Person person//)
         {
+            //person.Items.Add(item);
             Items.Add(item);
+      
 
             return await Task.FromResult(true);
         }

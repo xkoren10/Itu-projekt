@@ -13,7 +13,7 @@
 
     <StackLayout Spacing="20" Padding="15">
 
-        <Label Text="Suma: 0 kč" FontSize="Medium" HorizontalTextAlignment="Center"/>
+        <Label Text="{Binding Suma}" FontSize="Medium" HorizontalTextAlignment="Center"/>
 
 
 

@@ -7,6 +7,7 @@ namespace Itu.Models
         public string Id { get; set; }
         public string Text { get; set; }
         public string Price { get; set; }
-        public int Ammount { get; set; }
+
+        public double Ammount { get; set; }
     }
 }

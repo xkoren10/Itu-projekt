@@ -8,7 +8,7 @@ namespace Itu.Services
 {
     public class MockDataStore : IDataStore<Person>
     {
-        readonly List<Person> persons;
+       public readonly List<Person> persons;
 
         public MockDataStore()
         {
