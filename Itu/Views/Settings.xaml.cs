@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Itu.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Itu.Views
         public Settings()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.MainViewModel;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Itu.Views
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = ViewModelLocator.MainViewModel;
         }
 
         protected override void OnAppearing()

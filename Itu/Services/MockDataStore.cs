@@ -23,14 +23,18 @@ namespace Itu.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdatePersonAsync(Person item)
+
+        public async Task<bool> UpdatePersonAsync( Person person)
         {
-            var oldItem = persons.Where((Person arg) => arg.Id == item.Id).FirstOrDefault();
+            var oldItem = persons.Where((Person arg) => arg.Id == person.Id).FirstOrDefault();
+
+            int index = persons.IndexOf(oldItem);
             persons.Remove(oldItem);
-            persons.Add(item);
+            persons.Insert(index, person);
 
             return await Task.FromResult(true);
         }
+
 
         public async Task<bool> DeletePersonAsync(string id)
         {

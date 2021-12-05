@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:Itu.ViewModels"  
              xmlns:model="clr-namespace:Itu.Models" x:DataType="local:ItemsViewModel"
              x:Name="BrowseItemsPage">
+    
+    
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+ Pridať osobu" Command="{Binding AddItemCommand}" />
@@ -44,6 +46,10 @@
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemToDelete}"		
                                 CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
                                     Grid.Column="0"/>
+                            <Label Text="{Binding Suma, StringFormat='{0:0.#.0} kč'}" HorizontalTextAlignment="End"
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="25" Grid.Column="3" VerticalTextAlignment="Center"/>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
@@ -64,7 +70,9 @@
         </RefreshView>
 
 
-        <Label Text="Celková suma: 0 kč" HorizontalOptions="Center" FontSize="25"/>
+        <Label x:DataType="local:ItemsViewModel" Text="{Binding Suma}" HorizontalOptions="Center" FontSize="25" TextColor="{Binding Color}"/>
+        
+        
     </StackLayout>
 
 

@@ -28,35 +28,27 @@
 
 
 
-                        <SwipeView android:SwipeView.SwipeTransitionMode="Drag">
-                            <SwipeView.LeftItems>
-                                <SwipeItems Mode="Execute">
-                                    <SwipeItem Text="Delete"
-                               BackgroundColor="Red"
-                                 
-                                />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-                            
-                            <Grid Padding="10" x:DataType="model:Item">
+
+
+                        <Grid Padding="10" x:DataType="model:Item">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                            
-                                    <ColumnDefinition Width="30"/>
-                               <ColumnDefinition Width="50"/>
+
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="50"/>
 
                             </Grid.ColumnDefinitions>
-                                <Button Text="X" CornerRadius="5" BackgroundColor="Red" Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
+                            <Button Text="X" CornerRadius="5" BackgroundColor="Red" Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
                                          Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=DeleteItem}"  CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
 
-                                <Label Grid.Column="2" Grid.Row="0"  VerticalTextAlignment="Center" Text="{Binding Text}" 
+                            <Label Grid.Column="2" Grid.Row="0"  VerticalTextAlignment="Center" Text="{Binding Text}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="25" />
@@ -64,15 +56,15 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="15" />
-                                <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="3" Text="+" 
+                            <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="3" Text="+" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=IncrementCommand}"  CommandParameter="{Binding .}"/>
-                                <Label x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="4"  HorizontalTextAlignment="Center" FontSize="30" 
+                            <Label x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="4"  HorizontalTextAlignment="Center" FontSize="30" 
                                        Text="{Binding Ammount}" />
-                                <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="5" Text="-" 
+                            <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="5" Text="-" 
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=DecrementCommand}" CommandParameter="{Binding .}"/>
 
                         </Grid>
-                        </SwipeView>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

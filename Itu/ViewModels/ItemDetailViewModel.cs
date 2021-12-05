@@ -69,6 +69,7 @@ namespace Itu.ViewModels
         public void OnAppearing()
         {
             IsBusy = true;
+            CountSum();
             
         }
 
@@ -136,6 +137,7 @@ namespace Itu.ViewModels
             Person person = await DataStore.GetPersonAsync(ItemId);
             await DataStore2.DeleteItemsAsync(item.Id,person);
             await ExecuteLoadItemsCommand();
+            CountSum();
 
         }
 
@@ -165,7 +167,7 @@ namespace Itu.ViewModels
             }
         }
 
-        public void CountSum()
+        public async void CountSum()
         {
             double tmp = 0.0;
 
@@ -178,6 +180,11 @@ namespace Itu.ViewModels
             suma_double = tmp;
             Suma = $"Suma: {suma_double} kč";
 
+
+
+            Person person = await DataStore.GetPersonAsync(ItemId);
+            person.Suma = suma_double;
+            await DataStore.UpdatePersonAsync(person);
         }
 
 

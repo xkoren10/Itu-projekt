@@ -9,6 +9,7 @@ using Xamarin.Forms;
 
 namespace Itu.ViewModels
 {
+
     public class ItemsViewModel : BaseViewModel
     {
         private Person _selectedItem;
@@ -16,9 +17,12 @@ namespace Itu.ViewModels
         public ObservableCollection<Person> Items { get; }
         public Command LoadItemsCommand { get; }
 
+
         public Command<Person> ItemToDelete { get; }
         public Command AddItemCommand { get; }
         public Command<Person> ItemTapped { get; }
+
+        public Command SetBudgetCommand { get; }
 
         public ItemsViewModel()
         {
@@ -30,8 +34,58 @@ namespace Itu.ViewModels
 
             ItemToDelete = new Command<Person>(DeletePerson);
 
+            SetBudgetCommand = new Command(SetBudget);
+
             AddItemCommand = new Command(OnAddItem);
         }
+
+        private Color color = Color.Black;
+        private string suma ;
+        public double suma_double = 0.0;
+        public bool alerted = false;
+        public string Suma
+        {
+            get => suma;
+            set => SetProperty(ref suma, value);
+        }
+        //--------------------------------------------//
+
+        public double budget = 0.0;
+        public double budget2 = 0.0;
+
+        public Color Color
+        {
+            get => color;
+            set
+            {
+                color = value;
+                OnPropertyChanged(nameof(Color));
+            }
+        }
+
+        public double Budget
+        {
+            get => budget;
+
+            set => SetProperty(ref budget, value);
+        }
+
+
+        public double Budget2
+        {
+            get => budget2;
+
+            set => SetProperty(ref budget2, value);
+        }
+
+        public void SetBudget()
+        {
+            Budget2 = budget;
+            alerted = false;
+
+        }
+
+        //-----------------------------------------------//
 
         async Task ExecuteLoadItemsCommand()
         {
@@ -60,6 +114,10 @@ namespace Itu.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
+            CountSum();
+       
+
+
         }
 
         public Person SelectedItem
@@ -84,6 +142,7 @@ namespace Itu.ViewModels
                 return;
             }
 
+        
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
@@ -91,11 +150,44 @@ namespace Itu.ViewModels
 
         private async void DeletePerson(Person person)
         {
-           
 
-           await DataStore.DeletePersonAsync(person.Id);
-           await ExecuteLoadItemsCommand();
-          
+
+            await DataStore.DeletePersonAsync(person.Id);
+            await ExecuteLoadItemsCommand();
+            CountSum();
+
+        }
+
+        public void CountSum()
+        {
+            double tmp = 0.0;
+
+            foreach (Person item in Items)
+            {
+                tmp = tmp + item.Suma;
+
+            }
+
+            suma_double = tmp;
+            Suma = $"Celková suma: {suma_double} kč";
+
+            if ((suma_double > budget2) && (budget2 != 0.0)) 
+            {
+                
+                Color = Color.Red;
+                if (!alerted) 
+                { 
+                    Shell.Current.DisplayAlert("Pozor!", "Prekročili ste hranicu nastaveného rozpočtu.", "Beriem na vedomie.");
+                    alerted = true;
+                }
+                
+            }
+            else
+            {
+                Color = Color.Black;
+                alerted = false;
+            }
+
         }
     }
 }

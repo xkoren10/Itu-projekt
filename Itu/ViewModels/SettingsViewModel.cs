@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Itu.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,30 +8,30 @@ using Xamarin.Forms;
 
 namespace Itu.ViewModels
 {
-    public class SettingsViewModel : ContentView
+    public class SettingsViewModel : BaseViewModel
     {
 
-        public float Budget;
-        public List<string> Currency;
-        
+       /* public double budget; 
+
+        public Command SetBudgetCommand { get; }
+
         public SettingsViewModel()
         {
-            Currency = new List<string>
-            {
-                "Euro",
-                "Česká koruna",
-                "Rubeľ",
-                "Yen"
+            SetBudgetCommand = new Command(SetBudget);
 
-            };
-
-
-
-            Content = new StackLayout
-            {
-
-
-            };
         }
+
+        public double Budget
+        {
+            get => budget;
+
+            set => SetProperty(ref budget, value);
+        }
+
+        public void SetBudget()
+        {
+            Budget = budget;
+          
+        }*/
     }
 }
