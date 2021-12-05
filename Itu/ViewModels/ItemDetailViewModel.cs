@@ -70,6 +70,7 @@ namespace Itu.ViewModels
         {
             IsBusy = true;
             CountSum();
+
             
         }
 
@@ -178,7 +179,7 @@ namespace Itu.ViewModels
             }
 
             suma_double = tmp;
-            Suma = $"Suma: {suma_double} kč";
+            Suma = $"Suma: {suma_double} €";
 
 
 

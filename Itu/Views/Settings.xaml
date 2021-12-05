@@ -6,10 +6,12 @@
 
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center">
-            <Label Text="Nastavenie celkového rozpočtu:"
+            <Label Text="Nastavenie celkového rozpočtu v €:"
                 HorizontalOptions="CenterAndExpand" 
-                   Margin="0,40,0,0"/>
-            <Entry Text="{Binding Budget , Mode=TwoWay}" FontSize="Medium" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+                TextColor="Black"
+                FontSize="20"
+                Margin="0,40,0,0"/>
+            <Entry Text="{Binding Budget , Mode=TwoWay}" FontSize="30" Keyboard="Numeric" HorizontalTextAlignment="Center" />
 
             <Button Text="Nastaviť" Command="{Binding SetBudgetCommand}"/>
         </StackLayout>

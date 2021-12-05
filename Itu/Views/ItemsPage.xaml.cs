@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Itu.Views
 {
+
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel _viewModel;
@@ -28,5 +29,7 @@ namespace Itu.Views
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
+
+
     }
 }

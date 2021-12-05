@@ -48,7 +48,6 @@ namespace Itu.ViewModels
             get => suma;
             set => SetProperty(ref suma, value);
         }
-        //--------------------------------------------//
 
         public double budget = 0.0;
         public double budget2 = 0.0;
@@ -82,10 +81,8 @@ namespace Itu.ViewModels
         {
             Budget2 = budget;
             alerted = false;
-
         }
 
-        //-----------------------------------------------//
 
         async Task ExecuteLoadItemsCommand()
         {
@@ -115,9 +112,6 @@ namespace Itu.ViewModels
             IsBusy = true;
             SelectedItem = null;
             CountSum();
-       
-
-
         }
 
         public Person SelectedItem
@@ -142,8 +136,6 @@ namespace Itu.ViewModels
                 return;
             }
 
-        
-            // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
 
@@ -169,7 +161,7 @@ namespace Itu.ViewModels
             }
 
             suma_double = tmp;
-            Suma = $"Celková suma: {suma_double} kč";
+            Suma = $"Celková suma: {suma_double} €";
 
             if ((suma_double > budget2) && (budget2 != 0.0)) 
             {

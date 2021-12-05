@@ -11,9 +11,9 @@
     </ContentPage.ToolbarItems>
 
 
-    <StackLayout Spacing="20" Padding="15">
+    <StackLayout Spacing="10">
 
-        <Label Text="{Binding Suma}" FontSize="Medium" HorizontalTextAlignment="Center"/>
+        <Label Text="{Binding Suma}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black"/>
 
 
 
@@ -30,7 +30,7 @@
 
 
 
-                        <Grid Padding="10" x:DataType="model:Item">
+                        <Grid Padding="10" x:DataType="model:Item" BackgroundColor="LightGray">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto"/>
@@ -46,21 +46,21 @@
 
                             </Grid.ColumnDefinitions>
                             <Button Text="X" CornerRadius="5" BackgroundColor="Red" Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"
-                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=DeleteItem}"  CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=DeleteItem}"  CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
 
-                            <Label Grid.Column="2" Grid.Row="0"  VerticalTextAlignment="Center" Text="{Binding Text}" 
+                            <Label Grid.Column="2" Grid.Row="0"  VerticalTextAlignment="Center" Text="{Binding Text}"  TextColor="Black"
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="25" />
-                            <Label Grid.Column="2" Grid.Row="1"  VerticalTextAlignment="Center" Text="{Binding Price}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="15" />
-                            <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="3" Text="+" 
+                            <Label Grid.Column="2" Grid.Row="1"  VerticalTextAlignment="Center" Text="{Binding Price, StringFormat='{0:0.#.0} €'}" TextColor="Black"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="15" />
+                            <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="3" Text="+" FontSize="30" CornerRadius="5"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=IncrementCommand}"  CommandParameter="{Binding .}"/>
-                            <Label x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="4"  HorizontalTextAlignment="Center" FontSize="30" 
+                            <Label x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="4"  HorizontalTextAlignment="Center" FontSize="30" VerticalTextAlignment="Center"
                                        Text="{Binding Ammount}" />
-                            <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="5" Text="-" 
+                            <Button x:DataType="model:Item" Grid.RowSpan="2" Grid.Column="5" Text="-" FontSize="30" CornerRadius="5"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemDetailViewModel}}, Path=DecrementCommand}" CommandParameter="{Binding .}"/>
 
                         </Grid>

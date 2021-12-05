@@ -83,7 +83,6 @@ namespace Itu.ViewModels
 
         private async void OnCancel()
         {
-            // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
 
@@ -101,7 +100,6 @@ namespace Itu.ViewModels
             Person person = await DataStore.GetPersonAsync(ItemId);
             await DataStore2.AddItemsAsync(newItem,person);
 
-            // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync(".."); 
         }
     }
