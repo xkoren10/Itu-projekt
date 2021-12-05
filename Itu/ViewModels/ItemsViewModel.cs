@@ -7,6 +7,11 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+
+/*
+View Model pre stránku so zoznamom osôb. Autor: Matej Koreň
+*/
+
 namespace Itu.ViewModels
 {
 

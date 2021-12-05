@@ -3,6 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
+/* 
+ * Trieda presprávne bindovanie medzi stránkami. Autor: Marek Križan
+ */
+
 namespace Itu.Views
 {
    public static class ViewModelLocator

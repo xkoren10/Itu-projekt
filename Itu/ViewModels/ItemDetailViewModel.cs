@@ -6,6 +6,12 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+/*
+View Model pre stránku s položkami konkrétnej osoby. Autor: Marek Križan
+*/
+
+
+
 namespace Itu.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]

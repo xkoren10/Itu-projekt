@@ -5,6 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+Implementácia funkcii na prácu s položkami. Autor: Matej Koreň
+*/
+
+
 namespace Itu.Services
 {
    public class MockDrinkStore : MockDataStore, IDrinkStore<Item>

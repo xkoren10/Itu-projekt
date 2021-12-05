@@ -1,5 +1,9 @@
 ﻿using System;
 
+/*
+Model položky. Autor: Marek Križan
+*/
+
 namespace Itu.Models
 {
     public class Item

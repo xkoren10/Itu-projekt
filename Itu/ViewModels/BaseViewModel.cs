@@ -6,6 +6,12 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
+/*
+Základný View Model. Autor: Matej Koreň
+*/
+
+
+
 namespace Itu.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged

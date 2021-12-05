@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using Xamarin.Forms;
 
+
+
 namespace Itu.Views
 {
     public partial class ItemDetailPage : ContentPage

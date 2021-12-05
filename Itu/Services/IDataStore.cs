@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+/*
+Funkcie na prácu s osobami. Autor: Marek Križan
+*/
+
 namespace Itu.Services
 {
     public interface IDataStore<T>

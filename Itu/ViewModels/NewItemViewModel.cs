@@ -6,6 +6,10 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+/*
+View Model pre stránku na pridnie novej osoby. Autor: Marek Tišš
+*/
+
 namespace Itu.ViewModels
 {
     public class NewItemViewModel : BaseViewModel

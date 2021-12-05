@@ -5,6 +5,13 @@ using System.Diagnostics;
 using System.Text;
 using Xamarin.Forms;
 
+
+/*
+View Model pre stránku pridávania novej položky.  Autor: Marek Tišš
+*/
+
+
+
 namespace Itu.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]

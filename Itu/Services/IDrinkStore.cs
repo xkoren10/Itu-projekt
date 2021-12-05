@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+Funkcie na prácu s položkmi. Autor: Matej Koreň
+*/
+
+
 namespace Itu.Services
 {
     public interface IDrinkStore <T>

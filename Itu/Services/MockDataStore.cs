@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+/*
+Implementácia funkcii na prácu s osobami. Autor: Marek Križan
+*/
+
+
+
 namespace Itu.Services
 {
     public class MockDataStore : IDataStore<Person>

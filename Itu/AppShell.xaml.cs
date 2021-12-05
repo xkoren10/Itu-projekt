@@ -4,6 +4,11 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
+
+/*
+ * Pridanie routingu. Autor: Mtej Koreň
+ */
+
 namespace Itu
 {
     public partial class AppShell : Xamarin.Forms.Shell

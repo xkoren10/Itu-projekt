@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
+/*
+Model osoby. Autor: Marek Križan
+*/
+
+
 namespace Itu.Models
 {
     public class Person
