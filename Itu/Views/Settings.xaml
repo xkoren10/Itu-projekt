@@ -5,16 +5,13 @@
              x:Class="Itu.Views.Settings">
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Nastavenie rozpočtu:"
+        <StackLayout HorizontalOptions="Center">
+            <Label Text="Nastavenie celkového rozpočtu:"
                 HorizontalOptions="CenterAndExpand" 
                    Margin="0,40,0,0"/>
             <Entry Text="" FontSize="Medium" Keyboard="Numeric" />
 
-            <Label Text="Nastavenie meny:"
-                HorizontalOptions="CenterAndExpand" 
-                   Margin="0,40,0,0"/>
-            <Picker  Title="Vyberte menu:"  /> 
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

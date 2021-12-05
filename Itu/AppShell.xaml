@@ -31,7 +31,7 @@
 
     <TabBar> 
         <ShellContent Title="Akcia" Icon="shot_glass.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Title="História" Icon="history.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+
 
         <ShellContent Title="Nastavenia" Icon="settings.png" ContentTemplate="{DataTemplate local:Settings}" />
     </TabBar>

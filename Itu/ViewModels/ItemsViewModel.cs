@@ -15,6 +15,8 @@ namespace Itu.ViewModels
 
         public ObservableCollection<Person> Items { get; }
         public Command LoadItemsCommand { get; }
+
+        public Command<Person> ItemToDelete { get; }
         public Command AddItemCommand { get; }
         public Command<Person> ItemTapped { get; }
 
@@ -25,6 +27,8 @@ namespace Itu.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Person>(OnItemSelected);
+
+            ItemToDelete = new Command<Person>(DeletePerson);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -82,6 +86,16 @@ namespace Itu.ViewModels
 
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+        }
+
+
+        private async void DeletePerson(Person person)
+        {
+           
+
+           await DataStore.DeletePersonAsync(person.Id);
+           await ExecuteLoadItemsCommand();
+          
         }
     }
 }

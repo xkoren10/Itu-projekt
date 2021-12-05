@@ -10,8 +10,7 @@ namespace Itu.Services
     {
         Task<bool> AddItemsAsync(T Item, Person person);
         Task<bool> UpdateItemsAsync(T Item, Person person);
-        Task<bool> DeleteItemsAsync(string id);
-        Task<T> GetItemsAsync(string id);
+        Task<bool> DeleteItemsAsync(string id, Person person);
         Task<IEnumerable<T>> GetItemsAsync( Person person,bool forceRefresh = false);
     }
 }

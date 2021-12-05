@@ -16,7 +16,7 @@ namespace Itu.ViewModels
 
         public string itemId;
         private string meno;
-        private string suma;
+        private string suma ;
         public double suma_double = 0.0;
 
 
@@ -88,6 +88,7 @@ namespace Itu.ViewModels
 
         public Command DecrementCommand { get; }
 
+        public Command<Item> DeleteItem{ get; }
        
 
 
@@ -99,6 +100,7 @@ namespace Itu.ViewModels
 
             IncrementCommand = new Command<Item>(IncrementValue);
             DecrementCommand = new Command<Item>(DecrementValue);
+            DeleteItem = new Command<Item>(Deletion);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -128,7 +130,14 @@ namespace Itu.ViewModels
             }
         }
 
- 
+        private async void Deletion(Item item)
+        {
+
+            Person person = await DataStore.GetPersonAsync(ItemId);
+            await DataStore2.DeleteItemsAsync(item.Id,person);
+            await ExecuteLoadItemsCommand();
+
+        }
 
         private async void OnAddItem(object obj)
         {
@@ -147,11 +156,13 @@ namespace Itu.ViewModels
 
         public async void DecrementValue(Item item)
         {
+            if (item.Ammount > 0) { 
            item.Ammount--;
             Person person = await DataStore.GetPersonAsync(ItemId);
             await DataStore2.UpdateItemsAsync(item,person);
             await ExecuteLoadItemsCommand();
             CountSum();
+            }
         }
 
         public void CountSum()

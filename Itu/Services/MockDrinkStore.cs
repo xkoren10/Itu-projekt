@@ -10,11 +10,11 @@ namespace Itu.Services
    public class MockDrinkStore : MockDataStore, IDrinkStore<Item>
     {
 
-        readonly List<Item> Items;
+
 
         public MockDrinkStore()
         {
-            Items = new List<Item>();
+           
 
         }
 
@@ -38,18 +38,14 @@ namespace Itu.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemsAsync(string id)
+        public async Task<bool> DeleteItemsAsync(string id, Person person)
         {
-            var oldItem = Items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            Items.Remove(oldItem);
+            var oldItem = person.Items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            person.Items.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemsAsync(string id)
-        {
-            return await Task.FromResult(Items.FirstOrDefault(s => s.Id == id));
-        }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(Person person,bool forceRefresh = false)
         {
